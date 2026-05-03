@@ -14,15 +14,14 @@ services:
       - /app/node_modules
 
   db:
-    image: postgres:16-alpine
+    image: mysql:8.0
     ports:
-      - '5432:5432'
+      - '3306:3306'
     environment:
-      POSTGRES_DB: anonimus_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      MYSQL_DATABASE: anonimus_db
+      MYSQL_ROOT_PASSWORD: root
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - mysqldata:/var/lib/mysql
 
 volumes:
-  pgdata:
+  mysqldata:
