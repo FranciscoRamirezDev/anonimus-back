@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "name": "anonimus-back",
+  "version": "1.0.0",
+  "description": "API-REST",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FranciscoRamirezDev/anonimus-back.git"
+  },
+  "author": "Francisco Ramirez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FranciscoRamirezDev/anonimus-back/issues"
+  },
+  "homepage": "https://github.com/FranciscoRamirezDev/anonimus-back#readme"
+}
