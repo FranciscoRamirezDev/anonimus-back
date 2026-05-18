@@ -15,7 +15,7 @@ const router = Router();
  * @swagger
  * /api/v1/publicaciones:
  *   post:
- *     summary: Crear un nuevo publicacione
+ *     summary: Crear una nueva publicación
  *     tags: [Publicaciones]
  *     requestBody:
  *       required: true
@@ -23,11 +23,22 @@ const router = Router();
  *         application/json:
  *           schema:
  *             type: object
- *             example:
- *               nombre: "Ejemplo de publicacione"
+ *             required:
+ *               - id_comunidad
+ *               - contenido
+ *             properties:
+ *               id_comunidad:
+ *                 type: string
+ *                 format: uuid
+ *                 description: ID de la comunidad donde se publica
+ *                 example: "550e8400-e29b-41d4-a716-446655440000"
+ *               contenido:
+ *                 type: string
+ *                 description: Contenido de la publicación
+ *                 example: "Este es mi primer post en la comunidad"
  *     responses:
  *       201:
- *         description: publicación creada exitosamente
+ *         description: Publicación creada exitosamente
  *       400:
  *         description: Datos inválidos
  *       401:

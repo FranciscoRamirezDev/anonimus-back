@@ -15,7 +15,7 @@ const router = Router();
  * @swagger
  * /api/v1/reportes:
  *   post:
- *     summary: Crear un nuevo reporte
+ *     summary: Crear un nuevo reporte sobre una publicación
  *     tags: [Reportes]
  *     requestBody:
  *       required: true
@@ -23,11 +23,28 @@ const router = Router();
  *         application/json:
  *           schema:
  *             type: object
- *             example:
- *               nombre: "Ejemplo de reporte"
+ *             required:
+ *               - id_publicacion
+ *               - id_admin
+ *             properties:
+ *               id_publicacion:
+ *                 type: string
+ *                 format: uuid
+ *                 description: ID de la publicación a reportar
+ *                 example: "550e8400-e29b-41d4-a716-446655440000"
+ *               id_admin:
+ *                 type: string
+ *                 format: uuid
+ *                 description: ID del administrador que revisa el reporte
+ *                 example: "550e8400-e29b-41d4-a716-446655440001"
+ *               estado:
+ *                 type: string
+ *                 enum: ["pendiente", "revisado", "aprobado", "rechazado"]
+ *                 default: "pendiente"
+ *                 description: Estado del reporte
  *     responses:
  *       201:
- *         description: reporte creado exitosamente
+ *         description: Reporte creado exitosamente
  *       400:
  *         description: Datos inválidos
  *       401:

@@ -3,13 +3,13 @@ const sequelize = require('../config/db');
 
 const Comentario = sequelize.define('Comentario', {
   id_comentario: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
     primaryKey: true,
     field: 'id_comentario',
   },
   id_publicacion: {
-    type: DataTypes.UUID,
+    type: DataTypes.INTEGER,
     allowNull: false,
     references: {
       model: 'tb_publicaciones',
@@ -17,7 +17,7 @@ const Comentario = sequelize.define('Comentario', {
     },
   },
   id_usuario: {
-    type: DataTypes.UUID,
+    type: DataTypes.INTEGER,
     allowNull: false,
     references: {
       model: 'tb_usuarios',

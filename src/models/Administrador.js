@@ -3,8 +3,8 @@ const sequelize = require('../config/db');
 
 const Administrador = sequelize.define('Administrador', {
   id_admin: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
     primaryKey: true,
     field: 'id_admin',
   },

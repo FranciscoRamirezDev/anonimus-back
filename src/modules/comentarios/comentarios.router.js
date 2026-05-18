@@ -23,11 +23,22 @@ const router = Router();
  *         application/json:
  *           schema:
  *             type: object
- *             example:
- *               nombre: "Ejemplo de comentario"
+ *             required:
+ *               - id_publicacion
+ *               - texto
+ *             properties:
+ *               id_publicacion:
+ *                 type: string
+ *                 format: uuid
+ *                 description: ID de la publicación a comentar
+ *                 example: "550e8400-e29b-41d4-a716-446655440000"
+ *               texto:
+ *                 type: string
+ *                 description: Contenido del comentario
+ *                 example: "Excelente post, muy de acuerdo!"
  *     responses:
  *       201:
- *         description: comentario creado exitosamente
+ *         description: Comentario creado exitosamente
  *       400:
  *         description: Datos inválidos
  *       401:

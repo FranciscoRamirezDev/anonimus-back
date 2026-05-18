@@ -3,13 +3,13 @@ const sequelize = require('../config/db');
 
 const Reto = sequelize.define('Reto', {
   id_reto: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
     primaryKey: true,
     field: 'id_reto',
   },
   id_usuario: {
-    type: DataTypes.UUID,
+    type: DataTypes.INTEGER,
     allowNull: false,
     references: {
       model: 'tb_usuarios',

@@ -3,8 +3,8 @@ const sequelize = require('../config/db');
 
 const Comunidad = sequelize.define('Comunidad', {
   id_comunidad: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
     primaryKey: true,
     field: 'id_comunidad',
   },

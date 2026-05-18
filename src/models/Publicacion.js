@@ -3,13 +3,13 @@ const sequelize = require('../config/db');
 
 const Publicacion = sequelize.define('Publicacion', {
   id_publicacion: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
     primaryKey: true,
     field: 'id_publicacion',
   },
   id_usuario: {
-    type: DataTypes.UUID,
+    type: DataTypes.INTEGER,
     allowNull: false,
     references: {
       model: 'tb_usuarios',
@@ -17,7 +17,7 @@ const Publicacion = sequelize.define('Publicacion', {
     },
   },
   id_comunidad: {
-    type: DataTypes.UUID,
+    type: DataTypes.INTEGER,
     allowNull: false,
     references: {
       model: 'tb_comunidades',

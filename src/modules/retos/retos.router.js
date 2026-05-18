@@ -15,7 +15,7 @@ const router = Router();
  * @swagger
  * /api/v1/retos:
  *   post:
- *     summary: Crear un nuevo reto
+ *     summary: Crear un nuevo reto/desafío
  *     tags: [Retos]
  *     requestBody:
  *       required: true
@@ -23,11 +23,25 @@ const router = Router();
  *         application/json:
  *           schema:
  *             type: object
- *             example:
- *               nombre: "Ejemplo de reto"
+ *             required:
+ *               - titulo
+ *             properties:
+ *               titulo:
+ *                 type: string
+ *                 minLength: 3
+ *                 maxLength: 100
+ *                 description: Título del reto
+ *                 example: "Publicar 5 veces esta semana"
+ *               progreso_pct:
+ *                 type: integer
+ *                 minimum: 0
+ *                 maximum: 100
+ *                 default: 0
+ *                 description: Porcentaje de progreso del reto (0-100)
+ *                 example: 0
  *     responses:
  *       201:
- *         description: reto creado exitosamente
+ *         description: Reto creado exitosamente
  *       400:
  *         description: Datos inválidos
  *       401:

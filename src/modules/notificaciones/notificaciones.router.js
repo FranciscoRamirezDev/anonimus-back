@@ -7,27 +7,34 @@ const router = Router();
 /**
  * @swagger
  * tags:
- *   - name: notificacións
- *     description: Gestión de notificacións
+ *   - name: Notificaciones
+ *     description: Gestión de notificaciones
  */
 
 /**
  * @swagger
- * /api/v1/notificacións:
+ * /api/v1/notificaciones:
  *   post:
- *     summary: Crear un nuevo notificación
- *     tags: [notificacións]
+ *     summary: Crear una nueva notificación
+ *     tags: [Notificaciones]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
- *             example:
- *               nombre: "Ejemplo de notificación"
+ *             required:
+ *               - mensaje
+ *             properties:
+ *               mensaje:
+ *                 type: string
+ *                 minLength: 1
+ *                 maxLength: 255
+ *                 description: Contenido del mensaje de notificación
+ *                 example: "Alguien reaccionó a tu publicación"
  *     responses:
  *       201:
- *         description: notificación creado exitosamente
+ *         description: Notificación creada exitosamente
  *       400:
  *         description: Datos inválidos
  *       401:

@@ -15,7 +15,7 @@ const router = Router();
  * @swagger
  * /api/v1/reacciones:
  *   post:
- *     summary: Crear un nuevo reaccione
+ *     summary: Crear una nueva reacción
  *     tags: [Reacciones]
  *     requestBody:
  *       required: true
@@ -23,11 +23,23 @@ const router = Router();
  *         application/json:
  *           schema:
  *             type: object
- *             example:
- *               nombre: "Ejemplo de reaccione"
+ *             required:
+ *               - id_publicacion
+ *               - tipo_reaccion
+ *             properties:
+ *               id_publicacion:
+ *                 type: string
+ *                 format: uuid
+ *                 description: ID de la publicación a reaccionar
+ *                 example: "550e8400-e29b-41d4-a716-446655440000"
+ *               tipo_reaccion:
+ *                 type: string
+ *                 enum: ["like", "love", "haha", "wow", "sad", "angry"]
+ *                 description: Tipo de reacción (me gusta, amor, carcajada, asombro, tristeza, enojo)
+ *                 example: "like"
  *     responses:
  *       201:
- *         description: reacción creada exitosamente
+ *         description: Reacción creada exitosamente
  *       400:
  *         description: Datos inválidos
  *       401:

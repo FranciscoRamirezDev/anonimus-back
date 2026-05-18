@@ -15,7 +15,7 @@ const router = Router();
  * @swagger
  * /api/v1/administradores:
  *   post:
- *     summary: Crear un nuevo administradore
+ *     summary: Crear un nuevo administrador
  *     tags: [Administradores]
  *     requestBody:
  *       required: true
@@ -23,11 +23,18 @@ const router = Router();
  *         application/json:
  *           schema:
  *             type: object
- *             example:
- *               nombre: "Ejemplo de administradore"
+ *             required:
+ *               - credenciales
+ *             properties:
+ *               credenciales:
+ *                 type: string
+ *                 minLength: 1
+ *                 maxLength: 255
+ *                 description: Credenciales o rol del administrador
+ *                 example: "admin@sistema.com"
  *     responses:
  *       201:
- *         description: administradore creado exitosamente
+ *         description: Administrador creado exitosamente
  *       400:
  *         description: Datos inválidos
  *       401:
