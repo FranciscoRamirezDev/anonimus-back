@@ -3,7 +3,12 @@ const ComentariosService = require('./comentarios.service');
 class ComentariosController {
   static async crear(req, res, next) {
     try {
-      const comentarios = await ComentariosService.crear(req.body);
+      // Agregar id_usuario del token JWT al body
+      const data = {
+        ...req.body,
+        id_usuario: req.user.id_usuario,
+      };
+      const comentarios = await ComentariosService.crear(data);
       res.status(201).json(comentarios);
     } catch (error) {
       next(error);

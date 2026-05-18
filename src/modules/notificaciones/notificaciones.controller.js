@@ -3,7 +3,12 @@ const NotificacionesService = require('./notificaciones.service');
 class NotificacionesController {
   static async crear(req, res, next) {
     try {
-      const notificaciones = await NotificacionesService.crear(req.body);
+      // Agregar id_usuario del token JWT al body
+      const data = {
+        ...req.body,
+        id_usuario: req.user.id_usuario,
+      };
+      const notificaciones = await NotificacionesService.crear(data);
       res.status(201).json(notificaciones);
     } catch (error) {
       next(error);

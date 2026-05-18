@@ -3,7 +3,12 @@ const RetosService = require('./retos.service');
 class RetosController {
   static async crear(req, res, next) {
     try {
-      const retos = await RetosService.crear(req.body);
+      // Agregar id_usuario del token JWT al body
+      const data = {
+        ...req.body,
+        id_usuario: req.user.id_usuario,
+      };
+      const retos = await RetosService.crear(data);
       res.status(201).json(retos);
     } catch (error) {
       next(error);

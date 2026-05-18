@@ -8,7 +8,7 @@ require('dotenv').config();
  */
 const generateToken = (usuario) => {
   return jwt.sign(
-    { id: usuario.id_usuario, alias: usuario.alias },
+    { id_usuario: usuario.id_usuario, alias: usuario.alias },
     process.env.JWT_SECRET || 'secreto_temporal_anonimus_2026',
     { expiresIn: process.env.JWT_EXPIRES || '24h' }
   );
@@ -116,7 +116,7 @@ const refreshToken = async (token) => {
       { ignoreExpiration: true }
     );
 
-    const usuario = await Usuario.findByPk(decoded.id);
+    const usuario = await Usuario.findByPk(decoded.id_usuario);
 
     if (!usuario) {
       const error = new Error('Usuario no encontrado');

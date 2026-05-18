@@ -3,7 +3,19 @@ const PublicacionesService = require('./publicaciones.service');
 class PublicacionesController {
   static async crear(req, res, next) {
     try {
-      const publicaciones = await PublicacionesService.crear(req.body);
+      // Debug: verificar si req.user existe
+      console.log('🔍 DEBUG - req.user:', req.user);
+      console.log('🔍 DEBUG - req.body:', req.body);
+      
+      // Agregar id_usuario del token JWT al body
+      const data = {
+        ...req.body,
+        id_usuario: req.user?.id_usuario,
+      };
+      
+      console.log('🔍 DEBUG - data enviada al service:', data);
+      
+      const publicaciones = await PublicacionesService.crear(data);
       res.status(201).json(publicaciones);
     } catch (error) {
       next(error);
