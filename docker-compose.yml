@@ -7,21 +7,37 @@ services:
       - '3000:3000'
     env_file:
       - .env
+    environment:
+      - NODE_ENV=development
     depends_on:
       - db
     volumes:
       - .:/app
       - /app/node_modules
+    networks:
+      - anonimus-network
 
   db:
     image: mysql:8.0
     ports:
       - '3306:3306'
     environment:
-      MYSQL_DATABASE: anonimus_db
+      MYSQL_DATABASE: anonimus
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: b8qaCtQX5nfOI7V3kQcc
     volumes:
       - mysqldata:/var/lib/mysql
+    networks:
+      - anonimus-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 10
+
+networks:
+  anonimus-network:
+    driver: bridge
 
 volumes:
   mysqldata:
