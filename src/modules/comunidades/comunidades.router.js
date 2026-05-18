@@ -23,8 +23,21 @@ const router = Router();
  *         application/json:
  *           schema:
  *             type: object
- *             example:
- *               nombre: "Ejemplo de comunidades"
+ *             required:
+ *               - nombre
+ *               - categoria
+ *             properties:
+ *               nombre:
+ *                 type: string
+ *                 minLength: 3
+ *                 maxLength: 100
+ *                 description: Nombre único de la comunidad
+ *                 example: "Comunidad de Tecnología"
+ *               categoria:
+ *                 type: string
+ *                 maxLength: 50
+ *                 description: Categoría de la comunidad
+ *                 example: "Tecnología"
  *     responses:
  *       201:
  *         description: comunidades creado exitosamente
