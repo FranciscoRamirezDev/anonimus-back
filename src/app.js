@@ -15,7 +15,9 @@ const app = express();
 
 // — MIDDLEWARES —
 app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_URL }));
+app.use(cors({
+  origin: process.env.CLIENT_URL?.split(',').map(u => u.trim()),
+}));
 app.use(express.json());
 app.use(morgan('dev'));
 
