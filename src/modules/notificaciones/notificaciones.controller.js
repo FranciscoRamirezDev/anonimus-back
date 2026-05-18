@@ -1,10 +1,10 @@
-const NotificacionService = require('./notificaciones.service');
+const NotificacionesService = require('./notificaciones.service');
 
-class NotificacionController {
+class NotificacionesController {
   static async crear(req, res, next) {
     try {
-      const notificacion = await NotificacionService.crear(req.body);
-      res.status(201).json(notificacion);
+      const notificaciones = await NotificacionesService.crear(req.body);
+      res.status(201).json(notificaciones);
     } catch (error) {
       next(error);
     }
@@ -12,8 +12,9 @@ class NotificacionController {
 
   static async obtenerTodos(req, res, next) {
     try {
-      const { limit = 10, offset = 0 } = req.query;
-      const resultado = await NotificacionService.obtenerTodos(limit, offset);
+      const limit = Math.min(parseInt(req.query.limit) || 10, 100);
+      const offset = Math.max(parseInt(req.query.offset) || 0, 0);
+      const resultado = await NotificacionesService.obtenerTodos(limit, offset);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -22,8 +23,8 @@ class NotificacionController {
 
   static async obtenerPorId(req, res, next) {
     try {
-      const notificacion = await NotificacionService.obtenerPorId(req.params.id);
-      res.json(notificacion);
+      const notificaciones = await NotificacionesService.obtenerPorId(req.params.id);
+      res.json(notificaciones);
     } catch (error) {
       next(error);
     }
@@ -31,8 +32,8 @@ class NotificacionController {
 
   static async actualizar(req, res, next) {
     try {
-      const notificacion = await NotificacionService.actualizar(req.params.id, req.body);
-      res.json(notificacion);
+      const notificaciones = await NotificacionesService.actualizar(req.params.id, req.body);
+      res.json(notificaciones);
     } catch (error) {
       next(error);
     }
@@ -40,7 +41,7 @@ class NotificacionController {
 
   static async eliminar(req, res, next) {
     try {
-      const resultado = await NotificacionService.eliminar(req.params.id);
+      const resultado = await NotificacionesService.eliminar(req.params.id);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -48,4 +49,4 @@ class NotificacionController {
   }
 }
 
-module.exports = NotificacionController;
+module.exports = NotificacionesController;

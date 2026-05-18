@@ -1,10 +1,10 @@
-const AdministradorService = require('./administradores.service');
+const AdministradoresService = require('./administradores.service');
 
-class AdministradorController {
+class AdministradoresController {
   static async crear(req, res, next) {
     try {
-      const administrador = await AdministradorService.crear(req.body);
-      res.status(201).json(administrador);
+      const administradores = await AdministradoresService.crear(req.body);
+      res.status(201).json(administradores);
     } catch (error) {
       next(error);
     }
@@ -12,8 +12,9 @@ class AdministradorController {
 
   static async obtenerTodos(req, res, next) {
     try {
-      const { limit = 10, offset = 0 } = req.query;
-      const resultado = await AdministradorService.obtenerTodos(limit, offset);
+      const limit = Math.min(parseInt(req.query.limit) || 10, 100);
+      const offset = Math.max(parseInt(req.query.offset) || 0, 0);
+      const resultado = await AdministradoresService.obtenerTodos(limit, offset);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -22,8 +23,8 @@ class AdministradorController {
 
   static async obtenerPorId(req, res, next) {
     try {
-      const administrador = await AdministradorService.obtenerPorId(req.params.id);
-      res.json(administrador);
+      const administradores = await AdministradoresService.obtenerPorId(req.params.id);
+      res.json(administradores);
     } catch (error) {
       next(error);
     }
@@ -31,8 +32,8 @@ class AdministradorController {
 
   static async actualizar(req, res, next) {
     try {
-      const administrador = await AdministradorService.actualizar(req.params.id, req.body);
-      res.json(administrador);
+      const administradores = await AdministradoresService.actualizar(req.params.id, req.body);
+      res.json(administradores);
     } catch (error) {
       next(error);
     }
@@ -40,7 +41,7 @@ class AdministradorController {
 
   static async eliminar(req, res, next) {
     try {
-      const resultado = await AdministradorService.eliminar(req.params.id);
+      const resultado = await AdministradoresService.eliminar(req.params.id);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -48,4 +49,4 @@ class AdministradorController {
   }
 }
 
-module.exports = AdministradorController;
+module.exports = AdministradoresController;

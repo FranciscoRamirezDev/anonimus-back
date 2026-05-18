@@ -1,10 +1,10 @@
-const PublicacionService = require('./publicaciones.service');
+const PublicacionesService = require('./publicaciones.service');
 
-class PublicacionController {
+class PublicacionesController {
   static async crear(req, res, next) {
     try {
-      const publicacion = await PublicacionService.crear(req.body);
-      res.status(201).json(publicacion);
+      const publicaciones = await PublicacionesService.crear(req.body);
+      res.status(201).json(publicaciones);
     } catch (error) {
       next(error);
     }
@@ -12,8 +12,9 @@ class PublicacionController {
 
   static async obtenerTodos(req, res, next) {
     try {
-      const { limit = 10, offset = 0 } = req.query;
-      const resultado = await PublicacionService.obtenerTodos(limit, offset);
+      const limit = Math.min(parseInt(req.query.limit) || 10, 100);
+      const offset = Math.max(parseInt(req.query.offset) || 0, 0);
+      const resultado = await PublicacionesService.obtenerTodos(limit, offset);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -22,8 +23,8 @@ class PublicacionController {
 
   static async obtenerPorId(req, res, next) {
     try {
-      const publicacion = await PublicacionService.obtenerPorId(req.params.id);
-      res.json(publicacion);
+      const publicaciones = await PublicacionesService.obtenerPorId(req.params.id);
+      res.json(publicaciones);
     } catch (error) {
       next(error);
     }
@@ -31,8 +32,8 @@ class PublicacionController {
 
   static async actualizar(req, res, next) {
     try {
-      const publicacion = await PublicacionService.actualizar(req.params.id, req.body);
-      res.json(publicacion);
+      const publicaciones = await PublicacionesService.actualizar(req.params.id, req.body);
+      res.json(publicaciones);
     } catch (error) {
       next(error);
     }
@@ -40,7 +41,7 @@ class PublicacionController {
 
   static async eliminar(req, res, next) {
     try {
-      const resultado = await PublicacionService.eliminar(req.params.id);
+      const resultado = await PublicacionesService.eliminar(req.params.id);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -48,4 +49,4 @@ class PublicacionController {
   }
 }
 
-module.exports = PublicacionController;
+module.exports = PublicacionesController;

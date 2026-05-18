@@ -1,10 +1,10 @@
-const RetoService = require('./retos.service');
+const RetosService = require('./retos.service');
 
-class RetoController {
+class RetosController {
   static async crear(req, res, next) {
     try {
-      const reto = await RetoService.crear(req.body);
-      res.status(201).json(reto);
+      const retos = await RetosService.crear(req.body);
+      res.status(201).json(retos);
     } catch (error) {
       next(error);
     }
@@ -12,8 +12,9 @@ class RetoController {
 
   static async obtenerTodos(req, res, next) {
     try {
-      const { limit = 10, offset = 0 } = req.query;
-      const resultado = await RetoService.obtenerTodos(limit, offset);
+      const limit = Math.min(parseInt(req.query.limit) || 10, 100);
+      const offset = Math.max(parseInt(req.query.offset) || 0, 0);
+      const resultado = await RetosService.obtenerTodos(limit, offset);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -22,8 +23,8 @@ class RetoController {
 
   static async obtenerPorId(req, res, next) {
     try {
-      const reto = await RetoService.obtenerPorId(req.params.id);
-      res.json(reto);
+      const retos = await RetosService.obtenerPorId(req.params.id);
+      res.json(retos);
     } catch (error) {
       next(error);
     }
@@ -31,8 +32,8 @@ class RetoController {
 
   static async actualizar(req, res, next) {
     try {
-      const reto = await RetoService.actualizar(req.params.id, req.body);
-      res.json(reto);
+      const retos = await RetosService.actualizar(req.params.id, req.body);
+      res.json(retos);
     } catch (error) {
       next(error);
     }
@@ -40,7 +41,7 @@ class RetoController {
 
   static async eliminar(req, res, next) {
     try {
-      const resultado = await RetoService.eliminar(req.params.id);
+      const resultado = await RetosService.eliminar(req.params.id);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -48,4 +49,4 @@ class RetoController {
   }
 }
 
-module.exports = RetoController;
+module.exports = RetosController;

@@ -1,10 +1,10 @@
-const ComentarioService = require('./comentarios.service');
+const ComentariosService = require('./comentarios.service');
 
-class ComentarioController {
+class ComentariosController {
   static async crear(req, res, next) {
     try {
-      const comentario = await ComentarioService.crear(req.body);
-      res.status(201).json(comentario);
+      const comentarios = await ComentariosService.crear(req.body);
+      res.status(201).json(comentarios);
     } catch (error) {
       next(error);
     }
@@ -12,8 +12,9 @@ class ComentarioController {
 
   static async obtenerTodos(req, res, next) {
     try {
-      const { limit = 10, offset = 0 } = req.query;
-      const resultado = await ComentarioService.obtenerTodos(limit, offset);
+      const limit = Math.min(parseInt(req.query.limit) || 10, 100);
+      const offset = Math.max(parseInt(req.query.offset) || 0, 0);
+      const resultado = await ComentariosService.obtenerTodos(limit, offset);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -22,8 +23,8 @@ class ComentarioController {
 
   static async obtenerPorId(req, res, next) {
     try {
-      const comentario = await ComentarioService.obtenerPorId(req.params.id);
-      res.json(comentario);
+      const comentarios = await ComentariosService.obtenerPorId(req.params.id);
+      res.json(comentarios);
     } catch (error) {
       next(error);
     }
@@ -31,8 +32,8 @@ class ComentarioController {
 
   static async actualizar(req, res, next) {
     try {
-      const comentario = await ComentarioService.actualizar(req.params.id, req.body);
-      res.json(comentario);
+      const comentarios = await ComentariosService.actualizar(req.params.id, req.body);
+      res.json(comentarios);
     } catch (error) {
       next(error);
     }
@@ -40,7 +41,7 @@ class ComentarioController {
 
   static async eliminar(req, res, next) {
     try {
-      const resultado = await ComentarioService.eliminar(req.params.id);
+      const resultado = await ComentariosService.eliminar(req.params.id);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -48,4 +49,4 @@ class ComentarioController {
   }
 }
 
-module.exports = ComentarioController;
+module.exports = ComentariosController;

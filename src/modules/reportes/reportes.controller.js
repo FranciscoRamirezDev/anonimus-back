@@ -1,10 +1,10 @@
-const ReporteService = require('./reportes.service');
+const ReportesService = require('./reportes.service');
 
-class ReporteController {
+class ReportesController {
   static async crear(req, res, next) {
     try {
-      const reporte = await ReporteService.crear(req.body);
-      res.status(201).json(reporte);
+      const reportes = await ReportesService.crear(req.body);
+      res.status(201).json(reportes);
     } catch (error) {
       next(error);
     }
@@ -12,8 +12,9 @@ class ReporteController {
 
   static async obtenerTodos(req, res, next) {
     try {
-      const { limit = 10, offset = 0 } = req.query;
-      const resultado = await ReporteService.obtenerTodos(limit, offset);
+      const limit = Math.min(parseInt(req.query.limit) || 10, 100);
+      const offset = Math.max(parseInt(req.query.offset) || 0, 0);
+      const resultado = await ReportesService.obtenerTodos(limit, offset);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -22,8 +23,8 @@ class ReporteController {
 
   static async obtenerPorId(req, res, next) {
     try {
-      const reporte = await ReporteService.obtenerPorId(req.params.id);
-      res.json(reporte);
+      const reportes = await ReportesService.obtenerPorId(req.params.id);
+      res.json(reportes);
     } catch (error) {
       next(error);
     }
@@ -31,8 +32,8 @@ class ReporteController {
 
   static async actualizar(req, res, next) {
     try {
-      const reporte = await ReporteService.actualizar(req.params.id, req.body);
-      res.json(reporte);
+      const reportes = await ReportesService.actualizar(req.params.id, req.body);
+      res.json(reportes);
     } catch (error) {
       next(error);
     }
@@ -40,7 +41,7 @@ class ReporteController {
 
   static async eliminar(req, res, next) {
     try {
-      const resultado = await ReporteService.eliminar(req.params.id);
+      const resultado = await ReportesService.eliminar(req.params.id);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -48,4 +49,4 @@ class ReporteController {
   }
 }
 
-module.exports = ReporteController;
+module.exports = ReportesController;

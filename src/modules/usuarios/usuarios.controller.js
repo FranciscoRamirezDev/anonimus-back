@@ -1,10 +1,10 @@
-const UsuarioService = require('./usuarios.service');
+const UsuariosService = require('./usuarios.service');
 
-class UsuarioController {
+class UsuariosController {
   static async crear(req, res, next) {
     try {
-      const usuario = await UsuarioService.crear(req.body);
-      res.status(201).json(usuario);
+      const usuarios = await UsuariosService.crear(req.body);
+      res.status(201).json(usuarios);
     } catch (error) {
       next(error);
     }
@@ -12,8 +12,9 @@ class UsuarioController {
 
   static async obtenerTodos(req, res, next) {
     try {
-      const { limit = 10, offset = 0 } = req.query;
-      const resultado = await UsuarioService.obtenerTodos(limit, offset);
+      const limit = Math.min(parseInt(req.query.limit) || 10, 100);
+      const offset = Math.max(parseInt(req.query.offset) || 0, 0);
+      const resultado = await UsuariosService.obtenerTodos(limit, offset);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -22,8 +23,8 @@ class UsuarioController {
 
   static async obtenerPorId(req, res, next) {
     try {
-      const usuario = await UsuarioService.obtenerPorId(req.params.id);
-      res.json(usuario);
+      const usuarios = await UsuariosService.obtenerPorId(req.params.id);
+      res.json(usuarios);
     } catch (error) {
       next(error);
     }
@@ -31,8 +32,8 @@ class UsuarioController {
 
   static async actualizar(req, res, next) {
     try {
-      const usuario = await UsuarioService.actualizar(req.params.id, req.body);
-      res.json(usuario);
+      const usuarios = await UsuariosService.actualizar(req.params.id, req.body);
+      res.json(usuarios);
     } catch (error) {
       next(error);
     }
@@ -40,7 +41,7 @@ class UsuarioController {
 
   static async eliminar(req, res, next) {
     try {
-      const resultado = await UsuarioService.eliminar(req.params.id);
+      const resultado = await UsuariosService.eliminar(req.params.id);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -48,4 +49,4 @@ class UsuarioController {
   }
 }
 
-module.exports = UsuarioController;
+module.exports = UsuariosController;

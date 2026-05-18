@@ -1,10 +1,10 @@
-const ReaccionService = require('./reacciones.service');
+const ReaccionesService = require('./reacciones.service');
 
-class ReaccionController {
+class ReaccionesController {
   static async crear(req, res, next) {
     try {
-      const reaccion = await ReaccionService.crear(req.body);
-      res.status(201).json(reaccion);
+      const reacciones = await ReaccionesService.crear(req.body);
+      res.status(201).json(reacciones);
     } catch (error) {
       next(error);
     }
@@ -12,8 +12,9 @@ class ReaccionController {
 
   static async obtenerTodos(req, res, next) {
     try {
-      const { limit = 10, offset = 0 } = req.query;
-      const resultado = await ReaccionService.obtenerTodos(limit, offset);
+      const limit = Math.min(parseInt(req.query.limit) || 10, 100);
+      const offset = Math.max(parseInt(req.query.offset) || 0, 0);
+      const resultado = await ReaccionesService.obtenerTodos(limit, offset);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -22,8 +23,8 @@ class ReaccionController {
 
   static async obtenerPorId(req, res, next) {
     try {
-      const reaccion = await ReaccionService.obtenerPorId(req.params.id);
-      res.json(reaccion);
+      const reacciones = await ReaccionesService.obtenerPorId(req.params.id);
+      res.json(reacciones);
     } catch (error) {
       next(error);
     }
@@ -31,8 +32,8 @@ class ReaccionController {
 
   static async actualizar(req, res, next) {
     try {
-      const reaccion = await ReaccionService.actualizar(req.params.id, req.body);
-      res.json(reaccion);
+      const reacciones = await ReaccionesService.actualizar(req.params.id, req.body);
+      res.json(reacciones);
     } catch (error) {
       next(error);
     }
@@ -40,7 +41,7 @@ class ReaccionController {
 
   static async eliminar(req, res, next) {
     try {
-      const resultado = await ReaccionService.eliminar(req.params.id);
+      const resultado = await ReaccionesService.eliminar(req.params.id);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -48,4 +49,4 @@ class ReaccionController {
   }
 }
 
-module.exports = ReaccionController;
+module.exports = ReaccionesController;

@@ -1,10 +1,10 @@
-const ComunidadService = require('./comunidades.service');
+const ComunidadesService = require('./comunidades.service');
 
-class ComunidadController {
+class ComunidadesController {
   static async crear(req, res, next) {
     try {
-      const comunidad = await ComunidadService.crear(req.body);
-      res.status(201).json(comunidad);
+      const comunidades = await ComunidadesService.crear(req.body);
+      res.status(201).json(comunidades);
     } catch (error) {
       next(error);
     }
@@ -12,8 +12,9 @@ class ComunidadController {
 
   static async obtenerTodos(req, res, next) {
     try {
-      const { limit = 10, offset = 0 } = req.query;
-      const resultado = await ComunidadService.obtenerTodos(limit, offset);
+      const limit = Math.min(parseInt(req.query.limit) || 10, 100);
+      const offset = Math.max(parseInt(req.query.offset) || 0, 0);
+      const resultado = await ComunidadesService.obtenerTodos(limit, offset);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -22,8 +23,8 @@ class ComunidadController {
 
   static async obtenerPorId(req, res, next) {
     try {
-      const comunidad = await ComunidadService.obtenerPorId(req.params.id);
-      res.json(comunidad);
+      const comunidades = await ComunidadesService.obtenerPorId(req.params.id);
+      res.json(comunidades);
     } catch (error) {
       next(error);
     }
@@ -31,8 +32,8 @@ class ComunidadController {
 
   static async actualizar(req, res, next) {
     try {
-      const comunidad = await ComunidadService.actualizar(req.params.id, req.body);
-      res.json(comunidad);
+      const comunidades = await ComunidadesService.actualizar(req.params.id, req.body);
+      res.json(comunidades);
     } catch (error) {
       next(error);
     }
@@ -40,7 +41,7 @@ class ComunidadController {
 
   static async eliminar(req, res, next) {
     try {
-      const resultado = await ComunidadService.eliminar(req.params.id);
+      const resultado = await ComunidadesService.eliminar(req.params.id);
       res.json(resultado);
     } catch (error) {
       next(error);
@@ -48,4 +49,4 @@ class ComunidadController {
   }
 }
 
-module.exports = ComunidadController;
+module.exports = ComunidadesController;
