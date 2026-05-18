@@ -2,10 +2,14 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan');
+const swaggerUi = require('swagger-ui-express');
 require('dotenv').config();
 
 // Importar la conexión a BD
 const sequelize = require('./config/db');
+
+// Importar configuración de Swagger
+const swaggerSpec = require('./config/swagger');
 
 const app = express();
 
@@ -14,6 +18,19 @@ app.use(helmet());
 app.use(cors({ origin: process.env.CLIENT_URL }));
 app.use(express.json());
 app.use(morgan('dev'));
+
+// — SWAGGER DOCUMENTATION —
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  swaggerOptions: {
+    url: '/swagger.json',
+  },
+  customCss: '.swagger-ui .topbar { display: none }',
+}));
+
+app.get('/swagger.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+});
 
 // — ROUTES —
 app.use('/api/v1/auth', require('./modules/auth/auth.router'));
