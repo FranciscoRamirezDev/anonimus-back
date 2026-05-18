@@ -9,5 +9,7 @@ module.exports = {
   DB_NAME: process.env.DB_NAME || 'anonimus_db',
   DB_USER: process.env.DB_USER || 'root',
   DB_PASSWORD: process.env.DB_PASSWORD || '',
+  DB_DIALECT: process.env.DB_DIALECT || 'mysql',
   JWT_SECRET: process.env.JWT_SECRET || 'secret',
+  DB_SSL: process.env.DB_SSL || false,
 };
