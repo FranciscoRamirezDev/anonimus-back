@@ -30,7 +30,9 @@ class UsuarioService {
   static async actualizar(id, data) {
     const usuario = await Usuario.findByPk(id);
     if (!usuario) throw new Error('Usuario no encontrado');
-    return await usuario.update(data);
+    await usuario.update(data);
+    const { password_hash, ...sinPassword } = usuario.toJSON();
+    return sinPassword;
   }
 
   static async eliminar(id) {
