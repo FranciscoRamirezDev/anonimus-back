@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const NotificacionController = require('./notificaciones.controller');
+const NotificacionController = require('./notificacións.controller');
 const authMiddleware = require('../../middlewares/auth');
 
 const router = Router();
@@ -7,16 +7,16 @@ const router = Router();
 /**
  * @swagger
  * tags:
- *   - name: Notificaciones
- *     description: Gestión de notificaciones
+ *   - name: notificacións
+ *     description: Gestión de notificacións
  */
 
 /**
  * @swagger
- * /api/v1/notificaciones:
+ * /api/v1/notificacións:
  *   post:
- *     summary: Crear un nuevo notificacione
- *     tags: [Notificaciones]
+ *     summary: Crear un nuevo notificación
+ *     tags: [notificacións]
  *     requestBody:
  *       required: true
  *       content:
@@ -24,10 +24,10 @@ const router = Router();
  *           schema:
  *             type: object
  *             example:
- *               nombre: "Ejemplo de notificacione"
+ *               nombre: "Ejemplo de notificación"
  *     responses:
  *       201:
- *         description: notificacione creado exitosamente
+ *         description: notificación creado exitosamente
  *       400:
  *         description: Datos inválidos
  *       401:
@@ -39,10 +39,10 @@ router.post('/', authMiddleware, NotificacionController.crear);
 
 /**
  * @swagger
- * /api/v1/notificaciones:
+ * /api/v1/notificacións:
  *   get:
- *     summary: Listar todos los notificaciones (paginado)
- *     tags: [Notificaciones]
+ *     summary: Listar todos los notificacións (paginado)
+ *     tags: [notificacións]
  *     parameters:
  *       - in: query
  *         name: limit
@@ -58,7 +58,7 @@ router.post('/', authMiddleware, NotificacionController.crear);
  *         description: Número de registros a saltar
  *     responses:
  *       200:
- *         description: Lista de notificaciones
+ *         description: Lista de notificacións
  *         content:
  *           application/json:
  *             schema:
@@ -66,7 +66,7 @@ router.post('/', authMiddleware, NotificacionController.crear);
  *               properties:
  *                 total:
  *                   type: integer
- *                 notificaciones:
+ *                 notificacións:
  *                   type: array
  *       401:
  *         description: No autorizado
@@ -75,10 +75,10 @@ router.get('/', authMiddleware, NotificacionController.obtenerTodos);
 
 /**
  * @swagger
- * /api/v1/notificaciones/{id}:
+ * /api/v1/notificacións/{id}:
  *   get:
- *     summary: Obtener un notificacione por ID
- *     tags: [Notificaciones]
+ *     summary: Obtener un notificación por ID
+ *     tags: [notificacións]
  *     parameters:
  *       - in: path
  *         name: id
@@ -86,12 +86,12 @@ router.get('/', authMiddleware, NotificacionController.obtenerTodos);
  *         schema:
  *           type: string
  *           format: uuid
- *         description: ID del notificacione
+ *         description: ID del notificación
  *     responses:
  *       200:
- *         description: notificacione encontrado
+ *         description: notificación encontrado
  *       404:
- *         description: notificacione no encontrado
+ *         description: notificación no encontrado
  *       401:
  *         description: No autorizado
  */
@@ -99,10 +99,10 @@ router.get('/:id', authMiddleware, NotificacionController.obtenerPorId);
 
 /**
  * @swagger
- * /api/v1/notificaciones/{id}:
+ * /api/v1/notificacións/{id}:
  *   put:
- *     summary: Actualizar un notificacione
- *     tags: [Notificaciones]
+ *     summary: Actualizar un notificación
+ *     tags: [notificacións]
  *     parameters:
  *       - in: path
  *         name: id
@@ -118,9 +118,9 @@ router.get('/:id', authMiddleware, NotificacionController.obtenerPorId);
  *             type: object
  *     responses:
  *       200:
- *         description: notificacione actualizado
+ *         description: notificación actualizado
  *       404:
- *         description: notificacione no encontrado
+ *         description: notificación no encontrado
  *       401:
  *         description: No autorizado
  */
@@ -128,10 +128,10 @@ router.put('/:id', authMiddleware, NotificacionController.actualizar);
 
 /**
  * @swagger
- * /api/v1/notificaciones/{id}:
+ * /api/v1/notificacións/{id}:
  *   delete:
- *     summary: Eliminar un notificacione
- *     tags: [Notificaciones]
+ *     summary: Eliminar un notificación
+ *     tags: [notificacións]
  *     parameters:
  *       - in: path
  *         name: id
@@ -141,9 +141,9 @@ router.put('/:id', authMiddleware, NotificacionController.actualizar);
  *           format: uuid
  *     responses:
  *       200:
- *         description: notificacione eliminado
+ *         description: notificación eliminado
  *       404:
- *         description: notificacione no encontrado
+ *         description: notificación no encontrado
  *       401:
  *         description: No autorizado
  */

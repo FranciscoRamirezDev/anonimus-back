@@ -15,7 +15,7 @@ const router = Router();
  * @swagger
  * /api/v1/comunidades:
  *   post:
- *     summary: Crear un nuevo comunidade
+ *     summary: Crear un nuevo comunidades
  *     tags: [Comunidades]
  *     requestBody:
  *       required: true
@@ -24,10 +24,10 @@ const router = Router();
  *           schema:
  *             type: object
  *             example:
- *               nombre: "Ejemplo de comunidade"
+ *               nombre: "Ejemplo de comunidades"
  *     responses:
  *       201:
- *         description: comunidade creado exitosamente
+ *         description: comunidades creado exitosamente
  *       400:
  *         description: Datos inválidos
  *       401:
@@ -41,7 +41,7 @@ router.post('/', authMiddleware, ComunidadController.crear);
  * @swagger
  * /api/v1/comunidades:
  *   get:
- *     summary: Listar todos los comunidades (paginado)
+ *     summary: Listar todos las comunidades (paginado)
  *     tags: [Comunidades]
  *     parameters:
  *       - in: query
@@ -77,7 +77,7 @@ router.get('/', authMiddleware, ComunidadController.obtenerTodos);
  * @swagger
  * /api/v1/comunidades/{id}:
  *   get:
- *     summary: Obtener un comunidade por ID
+ *     summary: Obtener un comunidades por ID
  *     tags: [Comunidades]
  *     parameters:
  *       - in: path
@@ -86,12 +86,12 @@ router.get('/', authMiddleware, ComunidadController.obtenerTodos);
  *         schema:
  *           type: string
  *           format: uuid
- *         description: ID del comunidade
+ *         description: ID del comunidades
  *     responses:
  *       200:
- *         description: comunidade encontrado
+ *         description: comunidades encontrado
  *       404:
- *         description: comunidade no encontrado
+ *         description: comunidades no encontrado
  *       401:
  *         description: No autorizado
  */
@@ -101,7 +101,7 @@ router.get('/:id', authMiddleware, ComunidadController.obtenerPorId);
  * @swagger
  * /api/v1/comunidades/{id}:
  *   put:
- *     summary: Actualizar un comunidade
+ *     summary: Actualizar un comunidades
  *     tags: [Comunidades]
  *     parameters:
  *       - in: path
@@ -118,9 +118,9 @@ router.get('/:id', authMiddleware, ComunidadController.obtenerPorId);
  *             type: object
  *     responses:
  *       200:
- *         description: comunidade actualizado
+ *         description: comunidades actualizado
  *       404:
- *         description: comunidade no encontrado
+ *         description: comunidades no encontrado
  *       401:
  *         description: No autorizado
  */
@@ -130,7 +130,7 @@ router.put('/:id', authMiddleware, ComunidadController.actualizar);
  * @swagger
  * /api/v1/comunidades/{id}:
  *   delete:
- *     summary: Eliminar un comunidade
+ *     summary: Eliminar un comunidades
  *     tags: [Comunidades]
  *     parameters:
  *       - in: path
@@ -141,9 +141,9 @@ router.put('/:id', authMiddleware, ComunidadController.actualizar);
  *           format: uuid
  *     responses:
  *       200:
- *         description: comunidade eliminado
+ *         description: comunidades eliminado
  *       404:
- *         description: comunidade no encontrado
+ *         description: comunidades no encontrado
  *       401:
  *         description: No autorizado
  */

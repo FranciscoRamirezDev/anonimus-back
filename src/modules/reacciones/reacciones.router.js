@@ -27,7 +27,7 @@ const router = Router();
  *               nombre: "Ejemplo de reaccione"
  *     responses:
  *       201:
- *         description: reaccione creado exitosamente
+ *         description: reacción creada exitosamente
  *       400:
  *         description: Datos inválidos
  *       401:
@@ -41,7 +41,7 @@ router.post('/', authMiddleware, ReaccionController.crear);
  * @swagger
  * /api/v1/reacciones:
  *   get:
- *     summary: Listar todos los reacciones (paginado)
+ *     summary: Listar todos las reacciones (paginado)
  *     tags: [Reacciones]
  *     parameters:
  *       - in: query

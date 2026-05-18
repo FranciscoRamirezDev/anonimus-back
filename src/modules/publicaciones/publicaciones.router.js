@@ -27,7 +27,7 @@ const router = Router();
  *               nombre: "Ejemplo de publicacione"
  *     responses:
  *       201:
- *         description: publicacione creado exitosamente
+ *         description: publicación creada exitosamente
  *       400:
  *         description: Datos inválidos
  *       401:
@@ -41,7 +41,7 @@ router.post('/', authMiddleware, PublicacionController.crear);
  * @swagger
  * /api/v1/publicaciones:
  *   get:
- *     summary: Listar todos los publicaciones (paginado)
+ *     summary: Listar todos las publicaciones (paginado)
  *     tags: [Publicaciones]
  *     parameters:
  *       - in: query
@@ -77,7 +77,7 @@ router.get('/', authMiddleware, PublicacionController.obtenerTodos);
  * @swagger
  * /api/v1/publicaciones/{id}:
  *   get:
- *     summary: Obtener un publicacione por ID
+ *     summary: Obtener una publicación por ID
  *     tags: [Publicaciones]
  *     parameters:
  *       - in: path
@@ -101,7 +101,7 @@ router.get('/:id', authMiddleware, PublicacionController.obtenerPorId);
  * @swagger
  * /api/v1/publicaciones/{id}:
  *   put:
- *     summary: Actualizar un publicacione
+ *     summary: Actualizar una publicación
  *     tags: [Publicaciones]
  *     parameters:
  *       - in: path
@@ -130,7 +130,7 @@ router.put('/:id', authMiddleware, PublicacionController.actualizar);
  * @swagger
  * /api/v1/publicaciones/{id}:
  *   delete:
- *     summary: Eliminar un publicacione
+ *     summary: Eliminar una publicación
  *     tags: [Publicaciones]
  *     parameters:
  *       - in: path

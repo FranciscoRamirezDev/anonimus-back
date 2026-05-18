@@ -77,7 +77,7 @@ router.get('/', authMiddleware, AdministradorController.obtenerTodos);
  * @swagger
  * /api/v1/administradores/{id}:
  *   get:
- *     summary: Obtener un administradore por ID
+ *     summary: Obtener un administrador por ID
  *     tags: [Administradores]
  *     parameters:
  *       - in: path
@@ -101,7 +101,7 @@ router.get('/:id', authMiddleware, AdministradorController.obtenerPorId);
  * @swagger
  * /api/v1/administradores/{id}:
  *   put:
- *     summary: Actualizar un administradore
+ *     summary: Actualizar un administrador
  *     tags: [Administradores]
  *     parameters:
  *       - in: path
@@ -130,7 +130,7 @@ router.put('/:id', authMiddleware, AdministradorController.actualizar);
  * @swagger
  * /api/v1/administradores/{id}:
  *   delete:
- *     summary: Eliminar un administradore
+ *     summary: Eliminar un administrador
  *     tags: [Administradores]
  *     parameters:
  *       - in: path
