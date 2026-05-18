@@ -28,15 +28,13 @@ const router = Router();
  *               - id_admin
  *             properties:
  *               id_publicacion:
- *                 type: string
- *                 format: uuid
+ *                 type: integer
  *                 description: ID de la publicación a reportar
- *                 example: "550e8400-e29b-41d4-a716-446655440000"
+ *                 example: 1
  *               id_admin:
- *                 type: string
- *                 format: uuid
+ *                 type: integer
  *                 description: ID del administrador que revisa el reporte
- *                 example: "550e8400-e29b-41d4-a716-446655440001"
+ *                 example: 1
  *               estado:
  *                 type: string
  *                 enum: ["pendiente", "revisado", "aprobado", "rechazado"]
@@ -101,8 +99,7 @@ router.get('/', authMiddleware, ReporteController.obtenerTodos);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *         description: ID del reporte
  *     responses:
  *       200:
@@ -125,8 +122,7 @@ router.get('/:id', authMiddleware, ReporteController.obtenerPorId);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *     requestBody:
  *       required: true
  *       content:
@@ -154,8 +150,7 @@ router.put('/:id', authMiddleware, ReporteController.actualizar);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *     responses:
  *       200:
  *         description: reporte eliminado

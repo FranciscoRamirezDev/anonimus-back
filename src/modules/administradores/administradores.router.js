@@ -91,8 +91,7 @@ router.get('/', authMiddleware, AdministradorController.obtenerTodos);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *         description: ID del administradore
  *     responses:
  *       200:
@@ -115,8 +114,7 @@ router.get('/:id', authMiddleware, AdministradorController.obtenerPorId);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *     requestBody:
  *       required: true
  *       content:
@@ -144,8 +142,7 @@ router.put('/:id', authMiddleware, AdministradorController.actualizar);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *     responses:
  *       200:
  *         description: administradore eliminado

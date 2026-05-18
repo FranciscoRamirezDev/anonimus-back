@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { Usuario } = require('../../models');
-require('dotenv').config();
+const env = require('../../config/env');
 
 /**
  * Generar JWT token
@@ -9,7 +9,7 @@ require('dotenv').config();
 const generateToken = (usuario) => {
   return jwt.sign(
     { id_usuario: usuario.id_usuario, alias: usuario.alias },
-    process.env.JWT_SECRET || 'secreto_temporal_anonimus_2026',
+    env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRES || '24h' }
   );
 };
@@ -112,7 +112,7 @@ const refreshToken = async (token) => {
   try {
     const decoded = jwt.verify(
       token,
-      process.env.JWT_SECRET || 'secreto_temporal_anonimus_2026',
+      env.JWT_SECRET,
       { ignoreExpiration: true }
     );
 

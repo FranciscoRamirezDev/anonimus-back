@@ -28,10 +28,9 @@ const router = Router();
  *               - tipo_reaccion
  *             properties:
  *               id_publicacion:
- *                 type: string
- *                 format: uuid
+ *                 type: integer
  *                 description: ID de la publicación a reaccionar
- *                 example: "550e8400-e29b-41d4-a716-446655440000"
+ *                 example: 1
  *               tipo_reaccion:
  *                 type: string
  *                 enum: ["like", "love", "haha", "wow", "sad", "angry"]
@@ -96,8 +95,7 @@ router.get('/', authMiddleware, ReaccionController.obtenerTodos);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *         description: ID del reaccione
  *     responses:
  *       200:
@@ -120,8 +118,7 @@ router.get('/:id', authMiddleware, ReaccionController.obtenerPorId);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *     requestBody:
  *       required: true
  *       content:
@@ -149,8 +146,7 @@ router.put('/:id', authMiddleware, ReaccionController.actualizar);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *     responses:
  *       200:
  *         description: reaccione eliminado

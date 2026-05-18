@@ -104,8 +104,7 @@ router.get('/', authMiddleware, UsuarioController.obtenerTodos);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *         description: ID del usuario
  *     responses:
  *       200:
@@ -132,8 +131,7 @@ router.get('/:id', authMiddleware, UsuarioController.obtenerPorId);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *     requestBody:
  *       required: true
  *       content:
@@ -170,8 +168,7 @@ router.put('/:id', authMiddleware, UsuarioController.actualizar);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *     responses:
  *       200:
  *         description: Usuario eliminado

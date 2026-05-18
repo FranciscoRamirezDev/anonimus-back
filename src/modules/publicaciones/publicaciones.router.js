@@ -28,10 +28,9 @@ const router = Router();
  *               - contenido
  *             properties:
  *               id_comunidad:
- *                 type: string
- *                 format: uuid
+ *                 type: integer
  *                 description: ID de la comunidad donde se publica
- *                 example: "550e8400-e29b-41d4-a716-446655440000"
+ *                 example: 1
  *               contenido:
  *                 type: string
  *                 description: Contenido de la publicación
@@ -95,9 +94,8 @@ router.get('/', authMiddleware, PublicacionController.obtenerTodos);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
- *         description: ID del publicacione
+ *           type: integer
+ *         description: ID de la publicación
  *     responses:
  *       200:
  *         description: publicacione encontrado
@@ -119,8 +117,7 @@ router.get('/:id', authMiddleware, PublicacionController.obtenerPorId);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *     requestBody:
  *       required: true
  *       content:
@@ -129,9 +126,9 @@ router.get('/:id', authMiddleware, PublicacionController.obtenerPorId);
  *             type: object
  *     responses:
  *       200:
- *         description: publicacione actualizado
+ *         description: Publicación actualizada
  *       404:
- *         description: publicacione no encontrado
+ *         description: Publicación no encontrada
  *       401:
  *         description: No autorizado
  */
@@ -148,13 +145,12 @@ router.put('/:id', authMiddleware, PublicacionController.actualizar);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *     responses:
  *       200:
- *         description: publicacione eliminado
+ *         description: Publicación eliminada
  *       404:
- *         description: publicacione no encontrado
+ *         description: Publicación no encontrada
  *       401:
  *         description: No autorizado
  */

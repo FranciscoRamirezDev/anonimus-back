@@ -46,10 +46,10 @@ router.post('/', authMiddleware, NotificacionController.crear);
 
 /**
  * @swagger
- * /api/v1/notificacións:
+ * /api/v1/notificaciones:
  *   get:
- *     summary: Listar todos los notificacións (paginado)
- *     tags: [notificacións]
+ *     summary: Listar todos los notificaciones (paginado)
+ *     tags: [notificaciones]
  *     parameters:
  *       - in: query
  *         name: limit
@@ -65,7 +65,7 @@ router.post('/', authMiddleware, NotificacionController.crear);
  *         description: Número de registros a saltar
  *     responses:
  *       200:
- *         description: Lista de notificacións
+ *         description: Lista de notificaciones
  *         content:
  *           application/json:
  *             schema:
@@ -73,7 +73,7 @@ router.post('/', authMiddleware, NotificacionController.crear);
  *               properties:
  *                 total:
  *                   type: integer
- *                 notificacións:
+ *                 notificaciones:
  *                   type: array
  *       401:
  *         description: No autorizado
@@ -82,17 +82,16 @@ router.get('/', authMiddleware, NotificacionController.obtenerTodos);
 
 /**
  * @swagger
- * /api/v1/notificacións/{id}:
+ * /api/v1/notificaciones/{id}:
  *   get:
  *     summary: Obtener un notificación por ID
- *     tags: [notificacións]
+ *     tags: [notificaciones]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *         description: ID del notificación
  *     responses:
  *       200:
@@ -106,17 +105,16 @@ router.get('/:id', authMiddleware, NotificacionController.obtenerPorId);
 
 /**
  * @swagger
- * /api/v1/notificacións/{id}:
+ * /api/v1/notificaciones/{id}:
  *   put:
  *     summary: Actualizar un notificación
- *     tags: [notificacións]
+ *     tags: [notificaciones]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *     requestBody:
  *       required: true
  *       content:
@@ -135,17 +133,16 @@ router.put('/:id', authMiddleware, NotificacionController.actualizar);
 
 /**
  * @swagger
- * /api/v1/notificacións/{id}:
+ * /api/v1/notificaciones/{id}:
  *   delete:
  *     summary: Eliminar un notificación
- *     tags: [notificacións]
+ *     tags: [notificaciones]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *     responses:
  *       200:
  *         description: notificación eliminado

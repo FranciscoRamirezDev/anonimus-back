@@ -28,10 +28,9 @@ const router = Router();
  *               - texto
  *             properties:
  *               id_publicacion:
- *                 type: string
- *                 format: uuid
+ *                 type: integer
  *                 description: ID de la publicación a comentar
- *                 example: "550e8400-e29b-41d4-a716-446655440000"
+ *                 example: 1
  *               texto:
  *                 type: string
  *                 description: Contenido del comentario
@@ -95,8 +94,7 @@ router.get('/', authMiddleware, ComentarioController.obtenerTodos);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *         description: ID del comentario
  *     responses:
  *       200:
@@ -119,8 +117,7 @@ router.get('/:id', authMiddleware, ComentarioController.obtenerPorId);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *     requestBody:
  *       required: true
  *       content:
@@ -148,8 +145,7 @@ router.put('/:id', authMiddleware, ComentarioController.actualizar);
  *         name: id
  *         required: true
  *         schema:
- *           type: string
- *           format: uuid
+ *           type: integer
  *     responses:
  *       200:
  *         description: comentario eliminado

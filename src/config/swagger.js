@@ -39,8 +39,7 @@ const options = {
           type: 'object',
           properties: {
             id_usuario: {
-              type: 'string',
-              format: 'uuid',
+              type: 'integer',
               description: 'ID único del usuario',
             },
             alias: {
@@ -71,8 +70,7 @@ const options = {
           type: 'object',
           properties: {
             id_comunidad: {
-              type: 'string',
-              format: 'uuid',
+              type: 'integer',
             },
             nombre: {
               type: 'string',
@@ -92,16 +90,13 @@ const options = {
           type: 'object',
           properties: {
             id_publicacion: {
-              type: 'string',
-              format: 'uuid',
+              type: 'integer',
             },
             id_usuario: {
-              type: 'string',
-              format: 'uuid',
+              type: 'integer',
             },
             id_comunidad: {
-              type: 'string',
-              format: 'uuid',
+              type: 'integer',
             },
             contenido: {
               type: 'string',

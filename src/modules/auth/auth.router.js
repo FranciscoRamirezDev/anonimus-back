@@ -49,8 +49,7 @@ const router = Router();
  *                   type: object
  *                   properties:
  *                     id_usuario:
- *                       type: string
- *                       format: uuid
+ *                       type: integer
  *                     alias:
  *                       type: string
  *                     avatar_url:
@@ -109,8 +108,7 @@ router.post('/register', authController.register);
  *                   type: object
  *                   properties:
  *                     id_usuario:
- *                       type: string
- *                       format: uuid
+ *                       type: integer
  *                     alias:
  *                       type: string
  *                     avatar_url:
