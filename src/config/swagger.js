@@ -2,125 +2,127 @@ const swaggerJSDoc = require('swagger-jsdoc');
 
 const options = {
   definition: {
-    openapi: '3.0.0',
+    openapi: "3.0.0",
     info: {
-      title: 'Anonimus API',
-      version: '1.0.0',
-      description: 'API REST para la plataforma Anonimus - Red social anónima con comunidades y desafíos',
+      title: "Anonimus API",
+      version: "1.0.0",
+      description:
+        "API REST para la plataforma Anonimus - Red social anónima con comunidades y desafíos",
       contact: {
-        name: 'Francisco Ramirez',
-        url: 'https://github.com/FranciscoRamirezDev/anonimus-back',
+        name: "Francisco Ramirez",
+        url: "https://github.com/FranciscoRamirezDev/anonimus-back",
       },
       license: {
-        name: 'ISC',
+        name: "ISC",
       },
     },
     servers: [
       {
-        url: 'http://localhost:3000',
-        description: 'Servidor de desarrollo',
+        url: "http://localhost:3000",
+        description: "Servidor de desarrollo",
       },
       {
-        url: 'https://api.anonimus.com',
-        description: 'Servidor de producción',
+        url: "https://anonimus-back.onrender.com",
+        description: "Servidor de producción",
       },
     ],
     components: {
       securitySchemes: {
         bearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'JWT',
-          description: 'Token JWT para autenticación',
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+          description: "Token JWT para autenticación",
         },
       },
       schemas: {
         Usuario: {
-          type: 'object',
+          type: "object",
           properties: {
             id_usuario: {
-              type: 'integer',
-              description: 'ID único del usuario',
+              type: "integer",
+              description: "ID único del usuario",
             },
             alias: {
-              type: 'string',
+              type: "string",
               minLength: 3,
               maxLength: 50,
-              description: 'Nombre de usuario único',
+              description: "Nombre de usuario único",
             },
             password_hash: {
-              type: 'string',
-              description: 'Hash de la contraseña (no se devuelve en respuestas)',
+              type: "string",
+              description:
+                "Hash de la contraseña (no se devuelve en respuestas)",
             },
             avatar_url: {
-              type: 'string',
-              format: 'url',
+              type: "string",
+              format: "url",
               nullable: true,
-              description: 'URL del avatar del usuario',
+              description: "URL del avatar del usuario",
             },
             fecha_registro: {
-              type: 'string',
-              format: 'date-time',
-              description: 'Fecha de registro del usuario',
+              type: "string",
+              format: "date-time",
+              description: "Fecha de registro del usuario",
             },
           },
-          required: ['alias', 'password_hash'],
+          required: ["alias", "password_hash"],
         },
         Comunidad: {
-          type: 'object',
+          type: "object",
           properties: {
             id_comunidad: {
-              type: 'integer',
+              type: "integer",
             },
             nombre: {
-              type: 'string',
+              type: "string",
               minLength: 3,
               maxLength: 100,
-              description: 'Nombre único de la comunidad',
+              description: "Nombre único de la comunidad",
             },
             categoria: {
-              type: 'string',
+              type: "string",
               maxLength: 50,
-              description: 'Categoría de la comunidad',
+              description: "Categoría de la comunidad",
             },
           },
-          required: ['nombre', 'categoria'],
+          required: ["nombre", "categoria"],
         },
         Publicacion: {
-          type: 'object',
+          type: "object",
           properties: {
             id_publicacion: {
-              type: 'integer',
+              type: "integer",
             },
             id_usuario: {
-              type: 'integer',
+              type: "integer",
             },
             id_comunidad: {
-              type: 'integer',
+              type: "integer",
             },
             contenido: {
-              type: 'string',
-              description: 'Contenido de la publicación',
+              type: "string",
+              description: "Contenido de la publicación",
             },
             fecha_pub: {
-              type: 'string',
-              format: 'date-time',
+              type: "string",
+              format: "date-time",
             },
             es_valida: {
-              type: 'boolean',
+              type: "boolean",
               default: true,
             },
           },
-          required: ['id_usuario', 'id_comunidad', 'contenido'],
+          required: ["id_usuario", "id_comunidad", "contenido"],
         },
         Error: {
-          type: 'object',
+          type: "object",
           properties: {
             message: {
-              type: 'string',
+              type: "string",
             },
             status: {
-              type: 'integer',
+              type: "integer",
             },
           },
         },
@@ -132,7 +134,7 @@ const options = {
       },
     ],
   },
-  apis: ['./src/modules/**/*.router.js'],
+  apis: ["./src/modules/**/*.router.js"],
 };
 
 module.exports = swaggerJSDoc(options);
