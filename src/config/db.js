@@ -29,10 +29,10 @@ const sequelize = new Sequelize(env.DB_NAME, env.DB_USER, env.DB_PASSWORD, {
 // Probar conexión al iniciar
 sequelize.authenticate()
   .then(() => {
-    console.log('✅ Conexión a BD establecida correctamente');
+    console.log('Conexión a BD establecida correctamente');
   })
   .catch((err) => {
-    console.error('❌ Error al conectar a la BD:', err.message);
+    console.error('Error al conectar a la BD:', err.message);
     process.exit(1);
   });
 
