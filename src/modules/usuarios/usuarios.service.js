@@ -31,7 +31,7 @@ class UsuarioService {
     const usuario = await Usuario.findByPk(id);
     if (!usuario) throw new Error('Usuario no encontrado');
     await usuario.update(data);
-    const { password_hash, ...sinPassword } = usuario.toJSON();
+    const { password_hash: _, ...sinPassword } = usuario.toJSON();
     return sinPassword;
   }
 

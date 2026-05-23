@@ -20,7 +20,7 @@ module.exports = [
       },
     },
     rules: {
-      'no-unused-vars': ['warn', { argsIgnorePattern: '^(next|req|res|err)$' }],
+      'no-unused-vars': ['warn', { argsIgnorePattern: '^(next|req|res|err)$', varsIgnorePattern: '^_' }],
       'no-console': 'off',
       'no-undef': 'error',
       'no-const-assign': 'error',
