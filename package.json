@@ -8,8 +8,8 @@
     "dev": "nodemon src/server.js",
     "seed:retos": "node scripts/seedRetos.js",
     "lint": "eslint src/",
-    "test": "jest --verbose --forceExit --detectOpenHandles",
-    "test:coverage": "jest --verbose --forceExit --detectOpenHandles --coverage"
+    "test": "jest --verbose --detectOpenHandles",
+    "test:coverage": "jest --verbose --detectOpenHandles --coverage"
   },
   "repository": {
     "type": "git",
