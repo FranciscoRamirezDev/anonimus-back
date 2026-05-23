@@ -1,0 +1,35 @@
+module.exports = [
+  {
+    files: ['src/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2021,
+      sourceType: 'commonjs',
+      globals: {
+        require: 'readonly',
+        module: 'readonly',
+        exports: 'readonly',
+        process: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        console: 'readonly',
+        setTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearTimeout: 'readonly',
+        clearInterval: 'readonly',
+        Buffer: 'readonly',
+      },
+    },
+    rules: {
+      'no-unused-vars': ['warn', { argsIgnorePattern: '^(next|req|res|err)$' }],
+      'no-console': 'off',
+      'no-undef': 'error',
+      'no-const-assign': 'error',
+      'no-dupe-keys': 'error',
+      'no-duplicate-case': 'error',
+      'no-unreachable': 'error',
+      'eqeqeq': ['error', 'always'],
+      'no-var': 'error',
+      'prefer-const': 'warn',
+    },
+  },
+];
