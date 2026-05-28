@@ -46,6 +46,7 @@ const register = async (data) => {
   const token = generateToken(nuevoUsuario);
 
   return {
+    status: 201,
     message: 'Usuario registrado exitosamente',
     user: {
       id_usuario: nuevoUsuario.id_usuario,
