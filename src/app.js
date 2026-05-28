@@ -16,7 +16,10 @@ const app = express();
 // — MIDDLEWARES —
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CLIENT_URL?.split(',').map(u => u.trim()),
+  origin: process.env.CLIENT_URL?.split(',').map(u => u.trim()) || [],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json());
 app.use(morgan('dev'));
