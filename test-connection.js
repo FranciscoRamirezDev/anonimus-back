@@ -5,7 +5,7 @@
 
 require('dotenv').config();
 const sequelize = require('./src/config/db');
-const { User, Task, Course } = require('./src/models');
+const models = require('./src/models');
 
 async function testConnection() {
   console.log('\n🔍 Iniciando pruebas de conexión...\n');
@@ -16,32 +16,29 @@ async function testConnection() {
     await sequelize.authenticate();
     console.log('   ✅ Autenticación exitosa\n');
 
-    // Test 2: Sincronización
+    // Test 2: Sincronización (crea las tablas si no existen)
     console.log('2️⃣  Sincronizando modelos...');
     await sequelize.sync({ alter: false });
     console.log('   ✅ Modelos sincronizados\n');
 
-    // Test 3: Contar registros
+    // Test 3: Contar registros por tabla
     console.log('3️⃣  Verificando tablas...');
-    const userCount = await User.count();
-    const taskCount = await Task.count();
-    const courseCount = await Course.count();
-    
-    console.log(`   👥 Usuarios: ${userCount}`);
-    console.log(`   📋 Tareas: ${taskCount}`);
-    console.log(`   📚 Cursos: ${courseCount}\n`);
+    for (const [name, model] of Object.entries(models)) {
+      const count = await model.count();
+      console.log(`   ${model.getTableName()} (${name}): ${count}`);
+    }
 
-    console.log('✅ ¡Todas las pruebas pasaron correctamente!\n');
+    console.log('\n✅ ¡Todas las pruebas pasaron correctamente!\n');
     console.log('📊 Información de la conexión:');
     console.log(`   Host: ${process.env.DB_HOST}`);
     console.log(`   Base de Datos: ${process.env.DB_NAME}`);
     console.log(`   Usuario: ${process.env.DB_USER}`);
-    console.log(`   Dialect: ${process.env.DB_DIALECT}\n`);
-
+    console.log(`   Dialect: ${process.env.DB_DIALECT}`);
+    console.log(`   SSL: ${process.env.DB_SSL ? 'sí' : 'no'}\n`);
   } catch (error) {
     console.error('❌ Error en la prueba:', error.message);
     console.error('\n📋 Detalles:', error);
-    process.exit(1);
+    process.exitCode = 1;
   } finally {
     await sequelize.close();
     console.log('🔌 Conexión cerrada\n');
